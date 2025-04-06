@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Starter TypeScript App",
+    "repo": "royfuwei/starter-ts-app"
+  },
+  {
+    "name": "Starter TypeScript Library",
+    "repo": "royfuwei/starter-ts-lib"
+  },
+  {
+    "name": "Starter TypeScript TurboRepo",
+    "repo": "royfuwei/starter-turbo"
+  },
+  {
+    "name": "Starter TypeScript Bin Command",
+    "repo": "royfuwei/starter-ts-bin"
+  }
+]

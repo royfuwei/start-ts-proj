@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.lib.json",
+  "exclude": ["node_modules", "dist", "test", "eslint.config.*", "jest.config.*"]
+}

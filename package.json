@@ -1,0 +1,90 @@
+{
+  "name": "starter-ts",
+  "version": "0.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "publish:dist": "./publish.sh",
+    "clean": "npx npm-run-all --parallel clean:dist clean:types",
+    "clean:types": "npx rimraf ./types",
+    "clean:dist": "npx rimraf ./dist",
+    "build": "npm run build:esbuild",
+    "dev": "npm run dev:esbuild",
+    "build:rollup": "npm run clean && rollup -c",
+    "dev:rollup": "npm run clean && rollup -c -w",
+    "build:esbuild": "npm run clean && node esbuild.build.mjs",
+    "dev:esbuild": "npm run clean && node esbuild.dev.mjs",
+    "lint-staged": "npx lint-staged",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
+    "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:web": "jest && npx http-server ./test-results/jest",
+    "test:cov": "jest --verbose --coverage",
+    "test:cov:web": "npm run test:cov && npx http-server ./coverage/lcov-report",
+    "test:e2e": "jest --config jest.config.e2e.ts",
+    "test:e2e:watch": "jest --config jest.config.e2e.ts --watch",
+    "test:e2e:web": "npm run test:e2e && npx http-server ./test-results/jest-e2e",
+    "test:e2e:cov": "jest --config jest.config.e2e.ts --verbose --coverage",
+    "release": "npx standard-version -t ''",
+    "release:patch": "npx standard-version -t '' --release-as patch",
+    "release:minor": "npx standard-version -t '' --release-as minor",
+    "release:major": "npx standard-version -t '' --release-as major",
+    "prepare": "npx husky"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npx prettier --write",
+      "npx eslint --fix"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "keywords": [],
+  "author": "royfuwei",
+  "license": "ISC",
+  "packageManager": "pnpm@10.0.0+sha512.b8fef5494bd3fe4cbd4edabd0745df2ee5be3e4b0b8b08fa643aa3e4c6702ccc0f00d68fa8a8c9858a735a0032485a44990ed2810526c875e416f001b17df12b",
+  "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
+    "@commitlint/cz-commitlint": "^19.6.1",
+    "@eslint/js": "^9.20.0",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/degit": "^2.8.6",
+    "@types/jest": "^29.5.14",
+    "@types/supertest": "^6.0.2",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "dts-bundle-generator": "^9.5.1",
+    "esbuild": "0.25.1",
+    "eslint": "^9.20.1",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "jest-html-reporter": "^4.0.1",
+    "jest-junit": "^16.0.0",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.5.1",
+    "rollup": "^4.36.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-dts": "^6.2.1",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.0"
+  },
+  "dependencies": {
+    "commander": "^13.1.0",
+    "degit": "^2.8.4",
+    "inquirer": "^12.5.0"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext", // 輸出 ES Module, 搭配 Rollup
+    "moduleResolution": "Node", // 或 "NodeNext", 視 Node.js 版本而定
+    "strict": true,
+    "importHelpers": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "declaration": true, // 產生型別宣告檔
+    "declarationMap": true, // 產生型別宣告檔的 sourcemap
+    "declarationDir": "types", // 型別宣告檔的輸出資料夾
+    "emitDeclarationOnly": false, // 讓 TS 同時輸出 .js 及 .d.ts
+    "outDir": "dist", // 暫存 .d.ts 的輸出資料夾(後面會再用 rollup-plugin-dts 整合)
+    "sourceMap": true, // 為輸出的 .js 產生 sourcemap
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  }
+}
