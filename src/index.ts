@@ -2,8 +2,6 @@
 
 import { Command } from 'commander';
 import inquirer from 'inquirer';
-import { readFileSync } from 'fs';
-import { resolve } from 'path';
 import { createProject } from './libs';
 
 const program = new Command();
@@ -17,14 +15,33 @@ type Options = {
   [key: string]: string | number | boolean | undefined;
 };
 
-const getTemplateInfo = () => {
+/* const getTemplateInfo = () => {
   const templateJson = JSON.parse(
     readFileSync(resolve('./templates.json'), 'utf-8'),
   ) as TemplateInfo[];
   return templateJson ?? <TemplateInfo[]>[];
-};
+}; */
 
-const templates: TemplateInfo[] = getTemplateInfo();
+// const templates: TemplateInfo[] = getTemplateInfo();
+
+const templates: TemplateInfo[] = [
+  {
+    name: 'Starter TypeScript App',
+    repo: 'royfuwei/starter-ts-app',
+  },
+  {
+    name: 'Starter TypeScript Library',
+    repo: 'royfuwei/starter-ts-lib',
+  },
+  {
+    name: 'Starter TypeScript TurboRepo',
+    repo: 'royfuwei/starter-turbo',
+  },
+  {
+    name: 'Starter TypeScript Bin Command',
+    repo: 'royfuwei/starter-ts-bin',
+  },
+];
 
 program
   .command('create [name]')
