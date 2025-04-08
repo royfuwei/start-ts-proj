@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1](https://github.com/royfuwei/start-ts-by/compare/v0.0.0...v0.0.1) (2025-04-08)
+
+
+### Features
+
+* adjust getTemplateInfo resolve templates.json file ([9b1b78b](https://github.com/royfuwei/start-ts-by/commit/9b1b78b2cc87d938cc49fec7f3a2fc584d58e425))
+
 ## 0.0.0 (2025-04-08)
 
 
