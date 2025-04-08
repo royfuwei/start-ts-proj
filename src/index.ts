@@ -22,7 +22,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const getTemplateInfo = (): TemplateInfo[] => {
-  const filePath = resolve(__dirname, '../templates.json'); // or './templates.json'
+  const filePath = resolve(__dirname, '../templates.json');
   const templateJson = JSON.parse(readFileSync(filePath, 'utf-8')) as TemplateInfo[];
   return templateJson ?? [];
 };
