@@ -3,6 +3,9 @@
 import { Command } from 'commander';
 import inquirer from 'inquirer';
 import { createProject } from './libs';
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
 
 const program = new Command();
 
@@ -15,33 +18,16 @@ type Options = {
   [key: string]: string | number | boolean | undefined;
 };
 
-/* const getTemplateInfo = () => {
-  const templateJson = JSON.parse(
-    readFileSync(resolve('./templates.json'), 'utf-8'),
-  ) as TemplateInfo[];
-  return templateJson ?? <TemplateInfo[]>[];
-}; */
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-// const templates: TemplateInfo[] = getTemplateInfo();
+const getTemplateInfo = (): TemplateInfo[] => {
+  const filePath = resolve(__dirname, '../templates.json'); // or './templates.json'
+  const templateJson = JSON.parse(readFileSync(filePath, 'utf-8')) as TemplateInfo[];
+  return templateJson ?? [];
+};
 
-const templates: TemplateInfo[] = [
-  {
-    name: 'Starter TypeScript App',
-    repo: 'royfuwei/starter-ts-app',
-  },
-  {
-    name: 'Starter TypeScript Library',
-    repo: 'royfuwei/starter-ts-lib',
-  },
-  {
-    name: 'Starter TypeScript TurboRepo',
-    repo: 'royfuwei/starter-turbo',
-  },
-  {
-    name: 'Starter TypeScript Bin Command',
-    repo: 'royfuwei/starter-ts-bin',
-  },
-];
+const templates: TemplateInfo[] = getTemplateInfo();
 
 program
   .command('create [name]')
