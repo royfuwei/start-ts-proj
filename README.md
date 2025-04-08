@@ -1,34 +1,21 @@
-TypeScript Template
+start-ts-by
 ===
 
-## Get Started by TS Template
+Create typescript project by clone empty typescript templates.
 
-### package.json main/exports settings
 
-#### settings main
+## Get Started start-ts-by
 
-```json
-{
-  ...
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  ...
-}
+### Local use by npx
+
+```sh
+npx start-ts-by
 ```
 
-#### settings exports
-```json
-{
-  ...
-  "exports": {
-    "import": "./dist/index.mjs",
-    "require": "./dist/index.cjs",
-    "types": "./types/index.d.ts"
-  },
-  ...
-}
-```
+
+---
+
+## Develop start-ts-by
 
 ### Install pnpm
 
@@ -36,11 +23,6 @@ TypeScript Template
 
 ``` sh
 corepack enable pnpm
-
-# corepack prepare pnpm@latest-9 --activate
-# corepack use pnpm@latest-9
-# corepack prepare pnpm@latest-10 --activate
-# corepack use pnpm@latest-10
 
 corepack prepare pnpm@10.0.0 --activate
 corepack use pnpm@10.0.0
@@ -113,32 +95,7 @@ pnpm test:e2e:watch
 
 ---
 
-## Release get CHANGELOG\.md by standard-version
-
-```sh
-# First Release
-# npx
-npx standard-version -t '' --first-release
-
-## Release patch
-npx standard-version -t '' --release-as patch
-# dry-run
-npx standard-version -t '' --release-as patch --dry-run
-
-## Release minor
-npx standard-version -t '' --release-as minor
-# dry-run
-npx standard-version -t '' --release-as minor --dry-run
-
-## Release major
-npx standard-version -t '' --release-as major
-# dry-run
-npx standard-version -t '' --release-as major --dry-run
-```
-
----
-
-## 基礎環境建置
+## Develop environment
 
 ### `.npmrc`, `.nvmrc`
 
@@ -155,10 +112,7 @@ pnpm exec husky init
 - commitlint
 - cz-conventional-changelog
 - commitizen
-- ~~git-cz~~
 
 ```sh
-# pnpm add -D cz-conventional-changelog @commitlint/cz-commitlint @commitlint/config-conventional git-cz @commitlint/cli commitizen
-
 pnpm add -D cz-conventional-changelog @commitlint/cz-commitlint @commitlint/config-conventional @commitlint/cli commitizen
 ```
