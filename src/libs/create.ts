@@ -2,15 +2,13 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import degit from 'degit';
+import { PackageJsonType } from '@/types';
 
 export type CreateProjectOptions = {
   name: string;
   template: string;
 };
 
-export type PackageJson = {
-  [key: string]: string | number | boolean | undefined;
-};
 export async function createProject({ name, template }: CreateProjectOptions) {
   const targetDir = path.resolve(process.cwd(), name);
 
@@ -44,7 +42,7 @@ export async function createProject({ name, template }: CreateProjectOptions) {
   if (fs.existsSync(packageJsonPath)) {
     const packageJson = JSON.parse(
       fs.readFileSync(packageJsonPath, 'utf-8'),
-    ) as PackageJson;
+    ) as PackageJsonType;
     packageJson.name = name;
     fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
   }
