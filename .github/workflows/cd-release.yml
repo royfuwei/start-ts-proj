@@ -1,0 +1,44 @@
+name: CD Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    outputs:
+      current-version: ${{ steps.version.outputs.current-version }}
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GIT_TOKEN }}
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Get Package Version
+        id: version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+
+  run-publish-pnpm-pkg:
+    if: github.event.pull_request.merged == true
+    needs: release
+    name: Run publish pnpm package
+    uses: royfuwei/rf-devops/.github/workflows/_publish-pnpm-pkg.yml@main
+    secrets:
+      GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    with:
+      version: ${{ needs.release.outputs.current-version }}

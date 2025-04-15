@@ -1,0 +1,16 @@
+name: CD Production
+
+on:
+  pull_request_target:
+    branches:
+      - production
+    types:
+      - closed
+
+jobs:
+  run-release-pnpm:
+    if: github.event.pull_request.merged == true
+    name: Run release pnpm
+    uses: royfuwei/rf-devops/.github/workflows/_node-release-pnpm.yml@main
+    secrets:
+      GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
