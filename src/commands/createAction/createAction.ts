@@ -5,6 +5,7 @@ import { promptActionArgName } from './promptActionArgName';
 import { getCreateRemoveList } from './getCreateRemoveList';
 import { getCreateExecList } from './getCreateExecList';
 import { promptActionArgBooleanCreateAction } from './promptActionArgsBoolean';
+import { getRemoveListByPromptActionArgsWhileInputsCreateAction } from './promptActionArgsWhileInputs';
 
 export async function createAction(name?: string, actionArgs?: ActionArgsType) {
   try {
@@ -16,7 +17,11 @@ export async function createAction(name?: string, actionArgs?: ActionArgsType) {
 
     await promptActionArgBooleanCreateAction(actionArgsParams);
 
-    const removeList = getCreateRemoveList(actionArgsParams);
+    const exRemoveList = await getRemoveListByPromptActionArgsWhileInputsCreateAction(
+      '請輸入要移除的檔案或資料夾（空白代表結束）',
+    );
+
+    const removeList = getCreateRemoveList(actionArgsParams).concat(exRemoveList);
     const execList = getCreateExecList(actionArgsParams);
 
     const params: CreateProjectParams = {
