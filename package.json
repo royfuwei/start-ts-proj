@@ -26,10 +26,10 @@
     "test:e2e:watch": "jest --config jest.config.e2e.ts --watch",
     "test:e2e:web": "npm run test:e2e && npx http-server ./test-results/jest-e2e",
     "test:e2e:cov": "jest --config jest.config.e2e.ts --verbose --coverage",
-    "release": "npx standard-version",
-    "release:patch": "npx standard-version --release-as patch",
-    "release:minor": "npx standard-version --release-as minor",
-    "release:major": "npx standard-version --release-as major",
+    "release": "SKIP_PREPARE_COMMIT=true npx standard-version",
+    "release:patch": "SKIP_PREPARE_COMMIT=true npx standard-version --release-as patch",
+    "release:minor": "SKIP_PREPARE_COMMIT=true npx standard-version --release-as minor",
+    "release:major": "SKIP_PREPARE_COMMIT=true npx standard-version --release-as major",
     "prepare": "npx husky"
   },
   "lint-staged": {
