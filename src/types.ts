@@ -41,3 +41,21 @@ export type ActionCommandType = {
   action: (name?: string, actionArgs?: ActionArgsType) => Promise<void>;
   commandOptions?: CommandOptions;
 };
+
+export type RemoveFileInfoType = {
+  field: string;
+  isRemove: boolean;
+};
+
+export type RnuExecInfoType = {
+  key: string;
+  command: string;
+  isExec: boolean;
+};
+
+export type CreateProjectParams = {
+  name: string;
+  template: string;
+  removeList: RemoveFileInfoType[];
+  execList: RnuExecInfoType[];
+};

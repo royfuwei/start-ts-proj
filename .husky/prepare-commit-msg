@@ -1,5 +1,6 @@
-# 如果是 CI 環境則直接退出（跳過此 hook）
-if [ "$CI" = "true" ]; then
+# If is CI, skip the commit message hook
+# If is SKIP_PREPARE_COMMIT, skip the commit message hook
+if [ "$CI" = "true" ] || [ "$SKIP_PREPARE_COMMIT" = "true" ]; then
   exit 0
 fi
 
