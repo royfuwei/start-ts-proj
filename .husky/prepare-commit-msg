@@ -1,5 +1,6 @@
-if [ -e /dev/tty ]; then
-  exec < /dev/tty && npx cz --hook || true
-else
-  npx cz --hook || true
+# 如果是 CI 環境則直接退出（跳過此 hook）
+if [ "$CI" = "true" ]; then
+  exit 0
 fi
+
+exec < /dev/tty && npx cz --hook || true
