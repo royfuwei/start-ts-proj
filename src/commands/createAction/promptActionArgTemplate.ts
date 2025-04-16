@@ -2,7 +2,7 @@ import { configs } from '@/configs';
 import { OptionsType } from '@/types';
 import inquirer from 'inquirer';
 
-export async function runActionArgTemplate(arg?: string) {
+export async function promptActionArgTemplate(arg?: string) {
   let template: string | undefined = arg ? String(arg) : undefined;
   const res: OptionsType = await inquirer.prompt([
     {

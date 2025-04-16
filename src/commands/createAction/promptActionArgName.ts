@@ -2,7 +2,7 @@ import { OptionsType } from '@/types';
 import { getTargetDir } from '@/utils';
 import inquirer from 'inquirer';
 
-export async function runActionArgName(arg?: string) {
+export async function promptActionArgName(arg?: string) {
   let name: string | undefined = arg ? String(arg) : undefined;
   if (!name) {
     const res: OptionsType = await inquirer.prompt([

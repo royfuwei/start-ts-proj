@@ -1,7 +1,7 @@
 import { createProject } from '@/libs';
 import { ActionArgsType, ActionCommandType, CreateProjectParams } from '@/types';
-import { runActionArgTemplate } from './runActionArgTemplate';
-import { runActionArgName } from './runActionArgName';
+import { promptActionArgTemplate } from './promptActionArgTemplate';
+import { promptActionArgName } from './promptActionArgName';
 import { getCreateRemoveList } from './getCreateRemoveList';
 import { getCreateExecList } from './getCreateExecList';
 
@@ -10,9 +10,9 @@ export async function createAction(name?: string, actionArgs?: ActionArgsType) {
     const actionArgsParams = actionArgs ?? {};
     console.log('🚀 開始建立專案...');
     console.log('🛠️ 讀取專案參數...');
-    const projectName = await runActionArgName(name);
+    const projectName = await promptActionArgName(name);
 
-    const template = await runActionArgTemplate(actionArgsParams.template as string);
+    const template = await promptActionArgTemplate(actionArgsParams.template as string);
 
     const removeList = getCreateRemoveList(actionArgsParams);
     const execList = getCreateExecList(actionArgsParams);
