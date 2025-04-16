@@ -3,7 +3,7 @@
 import { Command } from 'commander';
 import { configs } from '@/configs';
 import { createActionCommand } from '@/commands';
-import { setProgramCommand } from '@/libs';
+import { setProgramCommand } from '@/utils';
 
 function main() {
   const program = new Command();

@@ -41,3 +41,8 @@ export type ActionCommandType = {
   action: (name?: string, actionArgs?: ActionArgsType) => Promise<void>;
   commandOptions?: CommandOptions;
 };
+
+export type CreateProjectParams = {
+  name: string;
+  template: string;
+};
