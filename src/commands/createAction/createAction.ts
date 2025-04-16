@@ -4,15 +4,17 @@ import { promptActionArgTemplate } from './promptActionArgTemplate';
 import { promptActionArgName } from './promptActionArgName';
 import { getCreateRemoveList } from './getCreateRemoveList';
 import { getCreateExecList } from './getCreateExecList';
+import { promptActionArgBooleanCreateAction } from './promptActionArgsBoolean';
 
 export async function createAction(name?: string, actionArgs?: ActionArgsType) {
   try {
     const actionArgsParams = actionArgs ?? {};
     console.log('🚀 開始建立專案...');
-    console.log('🛠️ 讀取專案參數...');
     const projectName = await promptActionArgName(name);
 
     const template = await promptActionArgTemplate(actionArgsParams.template as string);
+
+    await promptActionArgBooleanCreateAction(actionArgsParams);
 
     const removeList = getCreateRemoveList(actionArgsParams);
     const execList = getCreateExecList(actionArgsParams);
