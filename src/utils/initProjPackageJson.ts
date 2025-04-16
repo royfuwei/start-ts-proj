@@ -3,11 +3,12 @@ import fs from 'fs';
 import { PackageJsonType } from '@/types';
 
 export function initProjPackageJson(targetDir: string, isInit = true) {
-  const packageJsonPath = path.join(targetDir, 'package.json');
+  const filename = 'package.json';
+  const packageJsonPath = path.join(targetDir, filename);
   const projectName = path.basename(targetDir);
   const isExists = fs.existsSync(packageJsonPath);
   if (isInit && isExists) {
-    console.info(`📁 ${packageJsonPath} exist`);
+    console.info(`📁 ${filename} exist`);
     const packageJson = JSON.parse(
       fs.readFileSync(packageJsonPath, 'utf-8'),
     ) as PackageJsonType;

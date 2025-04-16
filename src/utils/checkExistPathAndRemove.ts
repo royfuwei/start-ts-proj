@@ -9,10 +9,10 @@ export function checkExistPathAndRemove(
   const filePath = path.join(targetDir, name);
   const isExists = fs.existsSync(filePath);
   if (isExists) {
-    console.info(`📁 ${filePath} exist`);
+    console.info(`📁 ${name} exist`);
   }
   if (isRemove && isExists) {
     fs.rmSync(filePath, { recursive: true, force: true });
-    console.info(`🗑️  ${filePath} removed`);
+    console.info(`🗑️  ${name} removed`);
   }
 }
