@@ -27,7 +27,6 @@ jobs:
         uses: martinbeentjes/npm-get-version-action@v1.3.1
 
   run-publish-pnpm-pkg:
-    if: github.event.pull_request.merged == true
     needs: release
     name: Run publish pnpm package
     uses: royfuwei/rf-devops/.github/workflows/_publish-pnpm-pkg.yml@main
