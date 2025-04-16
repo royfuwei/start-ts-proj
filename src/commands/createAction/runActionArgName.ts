@@ -1,4 +1,5 @@
 import { OptionsType } from '@/types';
+import { getTargetDir } from '@/utils';
 import inquirer from 'inquirer';
 
 export async function runActionArgName(arg?: string) {
@@ -9,7 +10,10 @@ export async function runActionArgName(arg?: string) {
     ]);
     name = res.name ? String(res.name) : undefined;
   }
-  if (name) return name;
+  if (name) {
+    getTargetDir(name);
+    return name;
+  }
   console.error('❌ 專案名稱無效');
   process.exit(1);
 }
