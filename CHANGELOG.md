@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/royfuwei/start-ts-by/compare/v0.0.6...v0.0.7) (2025-04-16)
+
+
+### Features
+
+* **commands:** createAction add removeList and execList flags ([b9facfd](https://github.com/royfuwei/start-ts-by/commit/b9facfd5fea6414e6e8e5e6a38973446ca9160b5))
+* **utils:** adjust utils console.log file path to filename ([cf52812](https://github.com/royfuwei/start-ts-by/commit/cf528120d0d0a818073d609c22872fc407dac6c7))
+
 ### [0.0.6](https://github.com/royfuwei/start-ts-by/compare/v0.0.5...v0.0.6) (2025-04-16)
 
 ### [0.0.5](https://github.com/royfuwei/start-ts-by/compare/v0.0.4...v0.0.5) (2025-04-16)
