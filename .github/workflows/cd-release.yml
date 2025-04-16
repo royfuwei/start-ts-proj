@@ -22,12 +22,6 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GIT_TOKEN }}
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
-
       - name: Get Package Version
         id: version
         uses: martinbeentjes/npm-get-version-action@v1.3.1
