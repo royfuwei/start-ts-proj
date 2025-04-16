@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/royfuwei/start-ts-by/compare/v0.0.7...v0.0.8) (2025-04-16)
+
+
+### Features
+
+* **command:** createAction add promptActionArgsBoolean ([08335a1](https://github.com/royfuwei/start-ts-by/commit/08335a1996258e351fa86d9aa851a5c8dd81f79f))
+* **command:** createAction add promptActionArgsWhileInputs ([d489bb9](https://github.com/royfuwei/start-ts-by/commit/d489bb9f8c55f32be4122981e96d8693e60a8fd8))
+
 ### [0.0.7](https://github.com/royfuwei/start-ts-by/compare/v0.0.6...v0.0.7) (2025-04-16)
 
 
