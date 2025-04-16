@@ -1,1 +1,6 @@
+# 如果是 CI 環境則直接退出（跳過此 hook）
+if [ "$CI" = "true" ]; then
+  exit 0
+fi
+
 exec < /dev/tty && npx cz --hook || true
