@@ -1,1 +1,5 @@
-exec < /dev/tty && npx cz --hook || true
+if [ -e /dev/tty ]; then
+  exec < /dev/tty && npx cz --hook || true
+else
+  npx cz --hook || true
+fi
