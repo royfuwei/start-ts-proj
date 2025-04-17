@@ -1,27 +1,29 @@
 import { createProject } from '@/libs';
 import { ActionArgsType, ActionCommandType, CreateProjectParams } from '@/types';
-import { promptActionArgTemplate } from './promptActionArgTemplate';
-import { promptActionArgName } from './promptActionArgName';
+import { runCreateActionPromptArgTemplate } from './runCreateActionPromptArgTemplate';
+import { runCreateActionPromptArgName } from './runCreateActionPromptArgName';
 import { getCreateRemoveList } from './getCreateRemoveList';
 import { getCreateExecList } from './getCreateExecList';
-import { promptActionArgsBooleanCreateAction } from './promptActionArgsBoolean';
-import { getRemoveListByPromptActionArgsWhileInputsCreateAction } from './promptActionArgsWhileInputs';
+import { runCreateActionPromptArgsBoolean } from './runCreateActionPromptArgsBoolean';
+import { runGetRemoveFilesByPromptArgsWhileInputs } from './runGetRemoveFilesByPromptArgsWhileInputs';
 
 export async function createAction(name?: string, actionArgs?: ActionArgsType) {
   try {
     console.log('🚀 開始建立專案...');
     const actionArgsParams = actionArgs ?? {};
-    const projectName = await promptActionArgName(name);
+    const projectName = await runCreateActionPromptArgName(name);
 
-    const template = await promptActionArgTemplate(actionArgsParams.template as string);
+    const template = await runCreateActionPromptArgTemplate(
+      actionArgsParams.template as string,
+    );
 
-    await promptActionArgsBooleanCreateAction(actionArgsParams);
+    await runCreateActionPromptArgsBoolean(actionArgsParams);
 
-    const exRemoveList = await getRemoveListByPromptActionArgsWhileInputsCreateAction(
+    const exRmList = await runGetRemoveFilesByPromptArgsWhileInputs(
       '請輸入要移除的檔案或資料夾（空白代表結束）',
     );
 
-    const removeList = getCreateRemoveList(actionArgsParams).concat(exRemoveList);
+    const removeList = getCreateRemoveList(actionArgsParams).concat(exRmList);
     const execList = getCreateExecList(actionArgsParams);
 
     const params: CreateProjectParams = {
