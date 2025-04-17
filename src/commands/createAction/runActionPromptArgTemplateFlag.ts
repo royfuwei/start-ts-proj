@@ -21,7 +21,7 @@ export async function runActionPromptArgTemplateFlag(arg?: string) {
         message: '請選擇模板',
         type: 'list',
         choices: templates.map((t) => ({
-          name: t.name,
+          name: `${t.repo} (${t.name})`,
           value: t.repo,
         })),
       },
