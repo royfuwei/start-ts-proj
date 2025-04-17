@@ -10,8 +10,21 @@ npx start-ts-by [projectName]
 # or
 npx start-ts-by create [projectName]
 
+
 # use inquirer 
-npx start-ts-byå
+npx start-ts-by
+🚀 開始建立專案...
+✔ 請輸入專案名稱 my-app
+✔ 請輸入模板 (如 user/repo): (press enter to select template) 
+? 請選擇模板 (Use arrow keys)
+❯ royfuwei/starter-ts-app (Starter TypeScript App)
+  royfuwei/starter-ts-lib (Starter TypeScript Library)
+  royfuwei/starter-turbo (Starter TypeScript TurboRepo)
+  royfuwei/starter-ts-bin (Starter TypeScript Bin Command)
+...
+
+#########
+
 # skip inquirer
 npx start-ts-by [projectName] --skip-prompt -t royfuwei/starter-ts-app
 ```
