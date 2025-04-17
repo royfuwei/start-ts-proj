@@ -2,52 +2,13 @@ import { basename, join } from 'path';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { configs } from '@/configs';
 
-function getInitReadMeMdContent(template: string, projectName: string) {
-  const title = `# ${projectName}`;
-  const description = `A project is use ${configs.name} created by ${template}`;
-  const content = `# ${title}
-${description}
-## Getting Started
-1. Install dependencies
-   \`\`\`bash
-   npm install
-   \`\`\`
-2. Run the project
-   \`\`\`bash
-   npm run dev
-   \`\`\`
-3. Build the project
-   \`\`\`bash
-   npm run build
-   \`\`\`
-4. Run tests
-   \`\`\`bash
-   npm run test
-   \`\`\`
-5. Run lint
-   \`\`\`bash
-   npm run lint
-   \`\`\`
-
-## Release
-1. Release the project
-   \`\`\`bash
-   npm run release
-   # dry run
-   npm run release -- --dry-run
-   \`\`\`
-2. Release the project with version
-   \`\`\`bash
-   npm run release -- --version 1.0.0
-   \`\`\`
-
-## Reference
-- [Original README](./START_BY_README.md)
-  `;
-  return content;
-}
-
-export function initProjReadMeMd(template: string, targetDir: string) {
+/**
+ * @description: init project README.md
+ * @param {string} template
+ * @param {string} targetDir
+ * @return {*}
+ */
+export function initProjReadMeMd(template: string, targetDir: string): void {
   const projectName = basename(targetDir);
   const filename = 'README.md';
   const startByReadMeMdName = 'START_BY_README.md';
@@ -59,10 +20,59 @@ export function initProjReadMeMd(template: string, targetDir: string) {
   // write START_BY_README.md by original README.md
   const originalReadMeMd = readFileSync(readMeMdPath, 'utf-8');
   writeFileSync(startByReadMeMdPath, originalReadMeMd);
-  console.info(`📁 ${startByReadMeMdName} created`);
 
   // write new initial project README.md
   const content = getInitReadMeMdContent(template, projectName);
   writeFileSync(readMeMdPath, content);
-  console.info(`📁 Project ${filename} created`);
+
+  console.info(`📦 ${filename}, ${startByReadMeMdName} initialized.`);
+}
+
+/**
+ * @description: get initial README.md content
+ * @param {string} template
+ * @param {string} projectName
+ * @return {*}
+ */
+function getInitReadMeMdContent(template: string, projectName: string): string {
+  const description = `This project is a \`${template}\` template for creating a new project using the [${configs.name}](https://www.npmjs.com/package/start-ts-by) CLI.`;
+  const content = `${projectName}
+===
+
+${description}
+
+## Getting Started
+
+\`\`\`bash
+# 1. Install dependencies
+npm install
+## or pnpm
+pnpm install
+# 2. Run the project
+npm run dev
+# 3. Build the project
+npm run build
+# 4. Run tests
+npm run test
+# 5. Run lint
+npm run lint
+\`\`\`
+
+## Release
+\`\`\`bash
+# 1. Release the project
+npx standard-version
+## or
+npm run release
+# dry run
+npm run release -- --dry-run
+
+# 2. Release the project with version
+npm run release -- --version 1.0.0
+\`\`\`
+
+## Reference
+- [Original README](./START_BY_README.md)
+  `;
+  return content;
 }
