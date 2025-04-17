@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/royfuwei/start-ts-by/compare/v0.0.10...v0.0.11) (2025-04-17)
+
+
+### Features
+
+* **command:** add --skip-prompt flag ([a9f0732](https://github.com/royfuwei/start-ts-by/commit/a9f073280ad496ccd1325fa6497a98d35e027288))
+* **command:** runActionPromptArgTemplateFlag skip exist template ([89d3ee2](https://github.com/royfuwei/start-ts-by/commit/89d3ee2789f4ef46d8c2e13c3bb3963e91a49937))
+
+
+### Bug Fixes
+
+* **command:** runActionPromptArgRmFlag skip by empty --rm flag ([f96c469](https://github.com/royfuwei/start-ts-by/commit/f96c469a506627124a2a1a7bad8a9ff4fc2d850f))
+
 ### [0.0.10](https://github.com/royfuwei/start-ts-by/compare/v0.0.9...v0.0.10) (2025-04-17)
 
 ### [0.0.9](https://github.com/royfuwei/start-ts-by/compare/v0.0.8...v0.0.9) (2025-04-17)
