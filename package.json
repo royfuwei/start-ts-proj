@@ -43,6 +43,10 @@
       "path": "cz-conventional-changelog"
     }
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/royfuwei/start-ts-by.git"
+  },
   "keywords": [],
   "author": "royfuwei",
   "license": "ISC",
