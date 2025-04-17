@@ -1,6 +1,11 @@
 import degit from 'degit';
 import { CreateProjectParams } from '@/types';
-import { checkExistPathAndRemove, getTargetDir, initProjPackageJson } from '@/utils';
+import {
+  checkExistPathAndRemove,
+  getTargetDir,
+  initProjPackageJson,
+  initProjReadMeMd,
+} from '@/utils';
 import { execSyncByList } from '@/utils/execSyncByList';
 
 export async function createProject(params: CreateProjectParams) {
@@ -22,6 +27,9 @@ export async function createProject(params: CreateProjectParams) {
 
   // 初始化 package.json
   initProjPackageJson(targetDir);
+
+  // 初始化 README.md
+  initProjReadMeMd(template, targetDir);
 
   const runExecCommandList = execList.filter((i) => i.isExec).map((i) => i.command);
   execSyncByList(runExecCommandList, { cwd: targetDir });
