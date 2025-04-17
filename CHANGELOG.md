@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/royfuwei/start-ts-by/compare/v0.0.8...v0.0.9) (2025-04-17)
+
+
+### Features
+
+* **command:** add getExFlagRmRemoveList and runActionPromptArgRm ([755c2bf](https://github.com/royfuwei/start-ts-by/commit/755c2bff9393c5080319b04095cf7c1096939d8b))
+* **command:** adjust template prompt list information ([7c3b717](https://github.com/royfuwei/start-ts-by/commit/7c3b71701ec299749ad825529b407086a1e93332))
+* **utils:** add degitTemplateToLocal util ([9914589](https://github.com/royfuwei/start-ts-by/commit/99145895e642d519b8181f81172b50ba1d9560ae))
+* **utils:** add execSyncByList util for createProject to use ([44942a8](https://github.com/royfuwei/start-ts-by/commit/44942a83955218e7f953e2ced925d725e79dbd26))
+* **utils:** add initProjReadMeMd ([6689699](https://github.com/royfuwei/start-ts-by/commit/668969973eeaa0767257327af41acb65e41b417a))
+* **utils:** add promptArgBoolean, promptArgsWhileInputs ([85a154a](https://github.com/royfuwei/start-ts-by/commit/85a154a2658f7a048656d1ffb22712815a7f9a23))
+
 ### [0.0.8](https://github.com/royfuwei/start-ts-by/compare/v0.0.7...v0.0.8) (2025-04-16)
 
 
