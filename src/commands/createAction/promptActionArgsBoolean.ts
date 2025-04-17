@@ -1,23 +1,19 @@
 import { ActionArgsType, OptionsType } from '@/types';
 import inquirer from 'inquirer';
 
-export async function promptActionArgBoolean(
-  actionArgsParams: ActionArgsType,
+export async function promptActionArgsBoolean(
   key: string,
   message: string,
+  defaultValue: boolean,
 ) {
-  const paramValue = actionArgsParams[key];
-  if (paramValue == undefined || typeof paramValue !== 'boolean') {
-    return;
-  }
   const res: OptionsType = await inquirer.prompt([
-    { type: 'confirm', name: key, message, default: paramValue },
+    { type: 'confirm', name: key, message, default: defaultValue },
   ]);
-  const value = res[`${key}`] !== undefined ? Boolean(res[`${key}`]) : paramValue;
-  actionArgsParams[key] = value;
+  const value = res[`${key}`] !== undefined ? Boolean(res[`${key}`]) : defaultValue;
+  return value;
 }
 
-export async function promptActionArgBooleanCreateAction(
+export async function promptActionArgsBooleanCreateAction(
   actionArgsParams: ActionArgsType,
 ) {
   const info = [
@@ -27,6 +23,11 @@ export async function promptActionArgBooleanCreateAction(
     { key: 'npmInstall', message: '是否安裝依賴？' },
   ];
   for (const item of info) {
-    await promptActionArgBoolean(actionArgsParams, item.key, item.message);
+    const { key, message } = item;
+    const value = actionArgsParams[key];
+    if (value === undefined) continue;
+    if (typeof value !== 'boolean') continue;
+    const promptValue = await promptActionArgsBoolean(key, message, value);
+    actionArgsParams[key] = promptValue;
   }
 }
