@@ -1,6 +1,6 @@
 import { ActionArgsType, RemoveFileInfoType } from '@/types';
 
-export function getCreateRemoveList(actionArgsParams: ActionArgsType) {
+export function getArgsRmList(actionArgsParams: ActionArgsType) {
   const dotFileNames = ['husky', 'github'];
   const rmFileNames = ['husky', 'github'];
   const removeList: RemoveFileInfoType[] = Object.entries(actionArgsParams)

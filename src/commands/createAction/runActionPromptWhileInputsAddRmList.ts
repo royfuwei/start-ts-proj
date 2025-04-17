@@ -1,7 +1,8 @@
 import { RemoveFileInfoType } from '@/types';
 import { promptArgsWhileInputs } from '@/utils/promptArgsWhileInputs';
 
-export async function runGetRemoveFilesByPromptArgsWhileInputs(message: string) {
+export async function runActionPromptWhileInputsAddRmList(message: string) {
+  console.info('-------- Add remove files / folders');
   const inputs = await promptArgsWhileInputs(message);
   if (inputs.length === 0) {
     return [];

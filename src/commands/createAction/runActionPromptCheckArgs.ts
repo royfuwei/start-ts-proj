@@ -1,7 +1,8 @@
 import { ActionArgsType } from '@/types';
 import { promptArgBoolean } from '@/utils/promptArgBoolean';
 
-export async function runCreateActionPromptArgsBoolean(actionArgsParams: ActionArgsType) {
+export async function runActionPromptCheckArgs(actionArgsParams: ActionArgsType) {
+  console.info('-------- Check cli flags');
   const info = [
     { key: 'husky', message: '是否保留 husky？' },
     { key: 'github', message: '是否保留 github action？' },

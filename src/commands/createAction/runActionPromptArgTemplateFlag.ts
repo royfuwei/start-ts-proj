@@ -2,13 +2,13 @@ import { configs } from '@/configs';
 import { OptionsType } from '@/types';
 import inquirer from 'inquirer';
 
-export async function runCreateActionPromptArgTemplate(arg?: string) {
+export async function runActionPromptArgTemplateFlag(arg?: string) {
   let template: string | undefined = arg ? String(arg) : undefined;
   const res: OptionsType = await inquirer.prompt([
     {
       type: 'input',
       name: 'template',
-      message: '請輸入模板 (如 user/repo) OR 輸入空白使用預設模板',
+      message: '請輸入模板 (如 user/repo) / 輸入 Enter 使用預設模板',
       default: template,
     },
   ]);
