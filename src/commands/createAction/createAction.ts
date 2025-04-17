@@ -25,7 +25,7 @@ export async function createAction(name?: string, actionArgs?: ActionArgsType) {
 
     const promptRmFlagRmList = await runActionPromptArgRmFlag(actionArgsParams);
     const promptInputsRmList = await runActionPromptWhileInputsAddRmList(
-      '請輸入要移除的檔案或資料夾（空白代表結束）',
+      '請輸入要移除的檔案/資料夾 (press double enter to skip):',
     );
     const finalRemoveList = paramArgsRmList
       .concat(promptRmFlagRmList)
@@ -48,8 +48,13 @@ export async function createAction(name?: string, actionArgs?: ActionArgsType) {
       console.log('👋 使用者中斷了輸入（Ctrl+C）');
       process.exit(0);
     } else {
-      console.error('❌ 發生錯誤:', error);
-      throw error;
+      const errorMessage = (error as { message?: string })?.message;
+      if (errorMessage) {
+        console.error('❌ 發生錯誤:', errorMessage);
+      } else {
+        console.error('❌ 發生錯誤:', error);
+      }
+      process.exit(1);
     }
   }
 }

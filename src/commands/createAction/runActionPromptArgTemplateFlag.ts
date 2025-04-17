@@ -8,7 +8,7 @@ export async function runActionPromptArgTemplateFlag(arg?: string) {
     {
       type: 'input',
       name: 'template',
-      message: '請輸入模板 (如 user/repo) / 輸入 Enter 使用預設模板',
+      message: '請輸入模板 (如 user/repo): (press enter to select template)',
       default: template,
     },
   ]);
