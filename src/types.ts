@@ -1,7 +1,7 @@
 import { CommandOptions } from 'commander';
 
 export type ActionArgsType = {
-  [key: string]: string | boolean | undefined;
+  [key: string]: string | string[] | boolean | undefined;
 };
 
 export type OptionsType = {

@@ -1,6 +1,6 @@
 import { ActionArgsType, RnuExecInfoType } from '@/types';
 
-export function getCreateExecList(actionArgsParams: ActionArgsType) {
+export function getExecList(actionArgsParams: ActionArgsType) {
   const execList: RnuExecInfoType[] = [
     {
       key: 'gitInit',

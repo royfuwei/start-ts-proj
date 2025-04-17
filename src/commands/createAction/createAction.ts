@@ -1,34 +1,45 @@
 import { createProject } from '@/libs';
 import { ActionArgsType, ActionCommandType, CreateProjectParams } from '@/types';
-import { promptActionArgTemplate } from './promptActionArgTemplate';
-import { promptActionArgName } from './promptActionArgName';
-import { getCreateRemoveList } from './getCreateRemoveList';
-import { getCreateExecList } from './getCreateExecList';
-import { promptActionArgBooleanCreateAction } from './promptActionArgsBoolean';
-import { getRemoveListByPromptActionArgsWhileInputsCreateAction } from './promptActionArgsWhileInputs';
+import { runActionPromptArgTemplateFlag } from './runActionPromptArgTemplateFlag';
+import { runActionPromptName } from './runActionPromptName';
+import { getArgsRmList } from './getArgsRmList';
+import { getExecList } from './getExecList';
+import { runActionPromptCheckArgs } from './runActionPromptCheckArgs';
+import { runActionPromptWhileInputsAddRmList } from './runActionPromptWhileInputsAddRmList';
+import { runActionPromptArgRmFlag } from './runActionPromptArgRmFlag';
 
 export async function createAction(name?: string, actionArgs?: ActionArgsType) {
   try {
-    const actionArgsParams = actionArgs ?? {};
     console.log('🚀 開始建立專案...');
-    const projectName = await promptActionArgName(name);
+    const actionArgsParams = actionArgs ?? {};
+    const projectName = await runActionPromptName(name);
 
-    const template = await promptActionArgTemplate(actionArgsParams.template as string);
-
-    await promptActionArgBooleanCreateAction(actionArgsParams);
-
-    const exRemoveList = await getRemoveListByPromptActionArgsWhileInputsCreateAction(
-      '請輸入要移除的檔案或資料夾（空白代表結束）',
+    const template = await runActionPromptArgTemplateFlag(
+      actionArgsParams.template as string,
     );
 
-    const removeList = getCreateRemoveList(actionArgsParams).concat(exRemoveList);
-    const execList = getCreateExecList(actionArgsParams);
+    await runActionPromptCheckArgs(actionArgsParams);
+
+    // 取得要移除的檔案或資料夾
+    const paramArgsRmList = getArgsRmList(actionArgsParams);
+
+    const promptRmFlagRmList = await runActionPromptArgRmFlag(actionArgsParams);
+    const promptInputsRmList = await runActionPromptWhileInputsAddRmList(
+      '請輸入要移除的檔案/資料夾 (press double enter to skip):',
+    );
+    const finalRemoveList = paramArgsRmList
+      .concat(promptRmFlagRmList)
+      .concat(promptInputsRmList);
+
+    // execList
+    const paramArgsExecList = getExecList(actionArgsParams);
+    const finalExecList = paramArgsExecList;
 
     const params: CreateProjectParams = {
       name: projectName,
       template,
-      removeList,
-      execList,
+      removeList: finalRemoveList,
+      execList: finalExecList,
     };
 
     await createProject(params);
@@ -37,8 +48,13 @@ export async function createAction(name?: string, actionArgs?: ActionArgsType) {
       console.log('👋 使用者中斷了輸入（Ctrl+C）');
       process.exit(0);
     } else {
-      console.error('❌ 發生錯誤:', error);
-      throw error;
+      const errorMessage = (error as { message?: string })?.message;
+      if (errorMessage) {
+        console.error('❌ 發生錯誤:', errorMessage);
+      } else {
+        console.error('❌ 發生錯誤:', error);
+      }
+      process.exit(1);
     }
   }
 }
@@ -50,6 +66,11 @@ export const createActionCommand: ActionCommandType = {
     {
       flags: '-t, --template <repo>',
       description: 'GitHub 模板，如 user/repo',
+    },
+    {
+      flags: '--rm <files...>',
+      description: 'initial remove files',
+      defaultValue: [],
     },
     {
       flags: '--no-husky',

@@ -8,7 +8,6 @@ export function initProjPackageJson(targetDir: string, isInit = true) {
   const projectName = path.basename(targetDir);
   const isExists = fs.existsSync(packageJsonPath);
   if (isInit && isExists) {
-    console.info(`📁 ${filename} exist`);
     const packageJson = JSON.parse(
       fs.readFileSync(packageJsonPath, 'utf-8'),
     ) as PackageJsonType;
@@ -17,5 +16,6 @@ export function initProjPackageJson(targetDir: string, isInit = true) {
     packageJson.description = `A project created by ${originalName}`;
     packageJson.version = '0.0.0';
     fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+    console.info(`📦 ${filename} initialized`);
   }
 }
