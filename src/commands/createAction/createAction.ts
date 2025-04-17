@@ -7,7 +7,6 @@ import { getExecList } from './getExecList';
 import { runActionPromptCheckArgs } from './runActionPromptCheckArgs';
 import { runActionPromptWhileInputsAddRmList } from './runActionPromptWhileInputsAddRmList';
 import { runActionPromptArgRmFlag } from './runActionPromptArgRmFlag';
-import { getRmFlagRmList } from './getRmFlagRmList';
 
 export async function createAction(name?: string, actionArgs?: ActionArgsType) {
   try {
@@ -23,8 +22,8 @@ export async function createAction(name?: string, actionArgs?: ActionArgsType) {
 
     // 取得要移除的檔案或資料夾
     const paramArgsRmList = getArgsRmList(actionArgsParams);
-    const rmFlagRmList = getRmFlagRmList(actionArgsParams.rm as string[]);
-    const promptRmFlagRmList = await runActionPromptArgRmFlag(rmFlagRmList);
+
+    const promptRmFlagRmList = await runActionPromptArgRmFlag(actionArgsParams);
     const promptInputsRmList = await runActionPromptWhileInputsAddRmList(
       '請輸入要移除的檔案或資料夾（空白代表結束）',
     );

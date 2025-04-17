@@ -1,7 +1,9 @@
-import { RemoveFileInfoType } from '@/types';
+import { ActionArgsType } from '@/types';
 import { promptArgBoolean } from '@/utils/promptArgBoolean';
+import { getRmFlagRmList } from './getRmFlagRmList';
 
-export async function runActionPromptArgRmFlag(exRmInfoList: RemoveFileInfoType[]) {
+export async function runActionPromptArgRmFlag(actionArgsParams: ActionArgsType) {
+  const exRmInfoList = getRmFlagRmList(actionArgsParams.rm as string[]);
   console.info('-------- Check cli --rm flags');
   for (const item of exRmInfoList) {
     const { field, isRemove } = item;
