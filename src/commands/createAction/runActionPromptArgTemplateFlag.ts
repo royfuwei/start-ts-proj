@@ -4,15 +4,16 @@ import inquirer from 'inquirer';
 
 export async function runActionPromptArgTemplateFlag(arg?: string) {
   let template: string | undefined = arg ? String(arg) : undefined;
-  const res: OptionsType = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'template',
-      message: '請輸入模板 (如 user/repo): (press enter to select template)',
-      default: template,
-    },
-  ]);
-  template = res.template ? String(res.template) : undefined;
+  if (!template) {
+    const res: OptionsType = await inquirer.prompt([
+      {
+        type: 'input',
+        name: 'template',
+        message: '請輸入模板 (如 user/repo): (press enter to select template)',
+      },
+    ]);
+    template = res.template ? String(res.template) : undefined;
+  }
   if (!template) {
     const { templates } = configs;
     const res: OptionsType = await inquirer.prompt([
