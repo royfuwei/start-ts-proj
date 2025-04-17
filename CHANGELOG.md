@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/royfuwei/start-ts-by/compare/v0.0.10...v0.0.11) (2025-04-17)
+
+
+### Features
+
+* **command:** add --skip-prompt flag ([a9f0732](https://github.com/royfuwei/start-ts-by/commit/a9f073280ad496ccd1325fa6497a98d35e027288))
+* **command:** runActionPromptArgTemplateFlag skip exist template ([89d3ee2](https://github.com/royfuwei/start-ts-by/commit/89d3ee2789f4ef46d8c2e13c3bb3963e91a49937))
+
+
+### Bug Fixes
+
+* **command:** runActionPromptArgRmFlag skip by empty --rm flag ([f96c469](https://github.com/royfuwei/start-ts-by/commit/f96c469a506627124a2a1a7bad8a9ff4fc2d850f))
+
+### [0.0.10](https://github.com/royfuwei/start-ts-by/compare/v0.0.9...v0.0.10) (2025-04-17)
+
+### [0.0.9](https://github.com/royfuwei/start-ts-by/compare/v0.0.8...v0.0.9) (2025-04-17)
+
+
+### Features
+
+* **command:** add getExFlagRmRemoveList and runActionPromptArgRm ([755c2bf](https://github.com/royfuwei/start-ts-by/commit/755c2bff9393c5080319b04095cf7c1096939d8b))
+* **command:** adjust template prompt list information ([7c3b717](https://github.com/royfuwei/start-ts-by/commit/7c3b71701ec299749ad825529b407086a1e93332))
+* **utils:** add degitTemplateToLocal util ([9914589](https://github.com/royfuwei/start-ts-by/commit/99145895e642d519b8181f81172b50ba1d9560ae))
+* **utils:** add execSyncByList util for createProject to use ([44942a8](https://github.com/royfuwei/start-ts-by/commit/44942a83955218e7f953e2ced925d725e79dbd26))
+* **utils:** add initProjReadMeMd ([6689699](https://github.com/royfuwei/start-ts-by/commit/668969973eeaa0767257327af41acb65e41b417a))
+* **utils:** add promptArgBoolean, promptArgsWhileInputs ([85a154a](https://github.com/royfuwei/start-ts-by/commit/85a154a2658f7a048656d1ffb22712815a7f9a23))
+
+### [0.0.8](https://github.com/royfuwei/start-ts-by/compare/v0.0.7...v0.0.8) (2025-04-16)
+
+
+### Features
+
+* **command:** createAction add promptActionArgsBoolean ([08335a1](https://github.com/royfuwei/start-ts-by/commit/08335a1996258e351fa86d9aa851a5c8dd81f79f))
+* **command:** createAction add promptActionArgsWhileInputs ([d489bb9](https://github.com/royfuwei/start-ts-by/commit/d489bb9f8c55f32be4122981e96d8693e60a8fd8))
+
 ### [0.0.7](https://github.com/royfuwei/start-ts-by/compare/v0.0.6...v0.0.7) (2025-04-16)
 
 
