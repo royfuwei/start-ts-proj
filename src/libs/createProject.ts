@@ -1,7 +1,7 @@
-import { execSync } from 'child_process';
 import degit from 'degit';
 import { CreateProjectParams } from '@/types';
 import { checkExistPathAndRemove, getTargetDir, initProjPackageJson } from '@/utils';
+import { execSyncByList } from '@/utils/execSyncByList';
 
 export async function createProject(params: CreateProjectParams) {
   const { name, template, removeList, execList } = params;
@@ -20,13 +20,9 @@ export async function createProject(params: CreateProjectParams) {
 
   console.log(`✅ 專案 ${name} 已建立於 ${targetDir}`);
 
-  // 初始化 package.json（可選）
+  // 初始化 package.json
   initProjPackageJson(targetDir);
 
-  for (const item of execList) {
-    if (item.isExec) {
-      console.log(`🚀 開始執行 ${item.command}...`);
-      execSync(item.command, { cwd: targetDir, stdio: 'inherit' });
-    }
-  }
+  const runExecCommandList = execList.filter((i) => i.isExec).map((i) => i.command);
+  execSyncByList(runExecCommandList, { cwd: targetDir });
 }
