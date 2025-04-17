@@ -4,6 +4,9 @@ import { getRmFlagRmList } from './getRmFlagRmList';
 
 export async function runActionPromptArgRmFlag(actionArgsParams: ActionArgsType) {
   const exRmInfoList = getRmFlagRmList(actionArgsParams.rm as string[]);
+  if (exRmInfoList.length === 0) {
+    return [];
+  }
   console.info('-------- Check cli --rm flags');
   for (const item of exRmInfoList) {
     const { field, isRemove } = item;

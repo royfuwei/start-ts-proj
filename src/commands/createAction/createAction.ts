@@ -12,21 +12,27 @@ export async function createAction(name?: string, actionArgs?: ActionArgsType) {
   try {
     console.log('🚀 開始建立專案...');
     const actionArgsParams = actionArgs ?? {};
+    const skipPrompt = actionArgsParams.skipPrompt as boolean;
+
     const projectName = await runActionPromptName(name);
 
     const template = await runActionPromptArgTemplateFlag(
       actionArgsParams.template as string,
     );
 
-    await runActionPromptCheckArgs(actionArgsParams);
+    if (!skipPrompt) await runActionPromptCheckArgs(actionArgsParams);
 
     // 取得要移除的檔案或資料夾
     const paramArgsRmList = getArgsRmList(actionArgsParams);
 
-    const promptRmFlagRmList = await runActionPromptArgRmFlag(actionArgsParams);
-    const promptInputsRmList = await runActionPromptWhileInputsAddRmList(
-      '請輸入要移除的檔案/資料夾 (press double enter to skip):',
-    );
+    const promptRmFlagRmList = skipPrompt
+      ? []
+      : await runActionPromptArgRmFlag(actionArgsParams);
+    const promptInputsRmList = skipPrompt
+      ? []
+      : await runActionPromptWhileInputsAddRmList(
+          '請輸入要移除的檔案/資料夾 (press double enter to skip):',
+        );
     const finalRemoveList = paramArgsRmList
       .concat(promptRmFlagRmList)
       .concat(promptInputsRmList);
@@ -66,6 +72,11 @@ export const createActionCommand: ActionCommandType = {
     {
       flags: '-t, --template <repo>',
       description: 'GitHub 模板，如 user/repo',
+    },
+    {
+      flags: '--skip-prompt',
+      description: 'skip prompt',
+      defaultValue: false,
     },
     {
       flags: '--rm <files...>',
