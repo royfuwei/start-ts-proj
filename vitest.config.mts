@@ -19,6 +19,7 @@ export default defineConfig({
       enabled: true,
       all: true,
       include: ['src/*'],
+      reporter: ['cobertura', 'text', 'html'],
       provider: 'istanbul', // or 'v8'
       reportsDirectory: '.test/vitest/coverage',
     },
