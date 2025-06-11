@@ -35,7 +35,10 @@
     "release:patch": "SKIP_PREPARE_COMMIT=true npx standard-version --release-as patch",
     "release:minor": "SKIP_PREPARE_COMMIT=true npx standard-version --release-as minor",
     "release:major": "SKIP_PREPARE_COMMIT=true npx standard-version --release-as major",
-    "prepare": "npx husky"
+    "prepare": "npx husky",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "lint-staged": {
     "*.ts": [
@@ -92,6 +95,7 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.24.0",
+    "vitepress": "^1.6.3",
     "vitest": "^3.2.3"
   },
   "dependencies": {
