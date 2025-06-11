@@ -400,6 +400,8 @@ dist*
 .serverless/**/*.zip
 coverage*
 test-results*
+.test
+.test/*
 
 .env.*
 !.env.example
