@@ -19,7 +19,13 @@ export default defineConfig({
       enabled: true,
       all: true,
       include: ['src/*'],
-      reporter: ['cobertura', 'text', 'html'],
+      reporter: [
+        'cobertura',
+        'text',
+        process.env.VITEST_COV_PATH
+          ? ['html', { subdir: `${process.env.VITEST_COV_PATH}` }]
+          : 'html',
+      ],
       provider: 'istanbul', // or 'v8'
       reportsDirectory: '.test/vitest/coverage',
     },
