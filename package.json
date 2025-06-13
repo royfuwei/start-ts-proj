@@ -17,20 +17,28 @@
     "lint-staged": "npx lint-staged",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest --passWithNoTests",
-    "test:watch": "jest --watch",
-    "test:web": "jest && npx http-server ./test-results/jest",
-    "test:cov": "jest --verbose --coverage",
-    "test:cov:web": "npm run test:cov && npx http-server ./coverage/lcov-report",
-    "test:e2e": "jest --config jest.config.e2e.ts",
-    "test:e2e:watch": "jest --config jest.config.e2e.ts --watch",
-    "test:e2e:web": "npm run test:e2e && npx http-server ./test-results/jest-e2e",
-    "test:e2e:cov": "jest --config jest.config.e2e.ts --verbose --coverage",
+    "test": "npm run vitest",
+    "vitest": "vitest --passWithNoTests",
+    "vitest:ui": "vitest --passWithNoTests --ui",
+    "vitest:e2e": "vitest --config vitest.config.e2e.mts --passWithNoTests",
+    "vitest:e2e:ui": "vitest --config vitest.config.e2e.mts --passWithNoTests --ui",
+    "jest": "jest --passWithNoTests",
+    "jest:watch": "jest --watch",
+    "jest:web": "jest && npx http-server ./.test/jest",
+    "jest:cov": "jest --verbose --coverage",
+    "jest:cov:web": "npm run jest:cov && npx http-server ./.test/jest/coverage/lcov-report",
+    "jest:e2e": "jest --config jest.config.e2e.ts --passWithNoTests",
+    "jest:e2e:watch": "jest --config jest.config.e2e.ts --watch",
+    "jest:e2e:web": "npm run jest:e2e && npx http-server ./.test/jest-e2e",
+    "jest:e2e:cov": "jest --config jest.config.e2e.ts --verbose --coverage",
     "release": "SKIP_PREPARE_COMMIT=true npx standard-version",
     "release:patch": "SKIP_PREPARE_COMMIT=true npx standard-version --release-as patch",
     "release:minor": "SKIP_PREPARE_COMMIT=true npx standard-version --release-as minor",
     "release:major": "SKIP_PREPARE_COMMIT=true npx standard-version --release-as major",
-    "prepare": "npx husky"
+    "prepare": "npx husky",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "lint-staged": {
     "*.ts": [
@@ -63,6 +71,8 @@
     "@types/degit": "^2.8.6",
     "@types/jest": "^29.5.14",
     "@types/supertest": "^6.0.2",
+    "@vitest/coverage-istanbul": "^3.2.3",
+    "@vitest/ui": "^3.2.3",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
     "dts-bundle-generator": "^9.5.1",
@@ -84,11 +94,12 @@
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.24.0"
+    "typescript-eslint": "^8.24.0",
+    "vitepress": "^1.6.3",
+    "vitest": "^3.2.3"
   },
   "dependencies": {
     "commander": "^13.1.0",
-    "degit": "^2.8.4",
     "inquirer": "^12.5.0"
   }
 }

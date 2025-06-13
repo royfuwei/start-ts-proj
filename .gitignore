@@ -400,7 +400,12 @@ dist*
 .serverless/**/*.zip
 coverage*
 test-results*
+.test
+.test/*
 
 .env.*
 !.env.example
 /types*
+
+docs/.vitepress/dist
+docs/.vitepress/cache

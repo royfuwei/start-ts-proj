@@ -11,14 +11,14 @@ export default {
   },
   testRegex: '.*\\.e2e-(spec|test)\\.ts$',
   collectCoverageFrom: ['**/*.(t|j)s'],
-  coverageDirectory: '../coverage.e2e',
+  coverageDirectory: '../.test/jest-e2e/coverage',
   testEnvironment: 'node',
   reporters: [
     'default',
     [
       'jest-junit',
       {
-        outputDirectory: 'test-results/jest-e2e',
+        outputDirectory: '.test/jest-e2e',
         outputName: 'results.xml',
       },
     ],
@@ -26,7 +26,7 @@ export default {
       'jest-html-reporter',
       {
         pageTitle: 'Test Report',
-        outputPath: 'test-results/jest-e2e/index.html',
+        outputPath: '.test/jest-e2e/index.html',
       },
     ],
   ],

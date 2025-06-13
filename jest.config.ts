@@ -8,14 +8,14 @@ export default {
   rootDir: 'src',
   testRegex: '.*\\.spec\\.ts$',
   collectCoverageFrom: ['**/*.(t|j)s'],
-  coverageDirectory: '../coverage',
+  coverageDirectory: '../.test/jest/coverage',
   testEnvironment: 'node',
   reporters: [
     'default',
     [
       'jest-junit',
       {
-        outputDirectory: 'test-results/jest',
+        outputDirectory: '.test/jest',
         outputName: 'results.xml',
       },
     ],
@@ -23,7 +23,7 @@ export default {
       'jest-html-reporter',
       {
         pageTitle: 'Test Report',
-        outputPath: 'test-results/jest/index.html',
+        outputPath: '.test/jest/index.html',
       },
     ],
   ],
