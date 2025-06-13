@@ -4,4 +4,6 @@ export * from './getTargetDir';
 export * from './initProjPackageJson';
 export * from './initProjReadMeMd';
 export * from './execSyncByList';
-export * from './degitTemplateToLocal';
+export * from './parseTemplateSource';
+export * from './templateToLocal';
+export * from './pattern';
