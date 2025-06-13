@@ -51,13 +51,28 @@ jobs:
       - name: Install dependencies
         run: pnpm install # or pnpm install / yarn install / bun install
 
+      - name: Build with Vitest
+        run: |
+          export VITEST_COV_PATH=../$GITHUB_ACTOR/vitest/coverage
+          echo $VITEST_COV_PATH
+          pnpm vitest
+
       - name: Build with VitePress
-        run: pnpm docs:build --base $GITHUB_ACTOR # or pnpm docs:build / yarn docs:build / bun run docs:build
+        run: |
+          cp CHANGELOG.md docs
+          npx vitepress build docs --outDir public --base /$GITHUB_ACTOR
+
+      - name: Prepare public directory
+        run: |
+          mkdir -p public/vitest
+          mkdir -p public/vitest-e2e
+          cp -r .test/vitest/html/* public/vitest
+          cp -r .test/vitest/html/$VITEST_COV_PATH public/vitest
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/.vitepress/dist
+          path: public
 
   # Deployment job
   deploy:
