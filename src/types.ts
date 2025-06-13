@@ -1,5 +1,13 @@
 import { CommandOptions } from 'commander';
 
+export type ParsedTemplateType = {
+  repoUrl: string;
+  ref: string;
+  subdir: string;
+  isGithub: boolean;
+  isLocal: boolean;
+};
+
 export type ActionArgsType = {
   [key: string]: string | string[] | boolean | undefined;
 };

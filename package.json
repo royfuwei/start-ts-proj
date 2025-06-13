@@ -100,7 +100,6 @@
   },
   "dependencies": {
     "commander": "^13.1.0",
-    "degit": "^2.8.4",
     "inquirer": "^12.5.0"
   }
 }
