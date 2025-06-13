@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.15](https://github.com/royfuwei/start-ts-by/compare/v0.0.14...v0.0.15) (2025-06-13)
+
+
+### Features
+
+* remove degit to get tempate use git cmd by parse template source ([08eb12f](https://github.com/royfuwei/start-ts-by/commit/08eb12f2a12d539ad09e4f14ed8e8c2a2c4d36e7))
+
+### [0.0.14](https://github.com/royfuwei/start-ts-by/compare/v0.0.13...v0.0.14) (2025-04-17)
+
 ### [0.0.13](https://github.com/royfuwei/start-ts-by/compare/v0.0.12...v0.0.13) (2025-04-17)
 
 ### [0.0.12](https://github.com/royfuwei/start-ts-by/compare/v0.0.11...v0.0.12) (2025-04-17)
