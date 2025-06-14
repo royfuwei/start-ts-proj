@@ -4,22 +4,23 @@ layout: home
 
 hero:
   name: "start-ts-by"
-  text: "Create typescript project by clone empty typescript templates."
-  tagline: My great project tagline
+  text: "Scaffold TypeScript projects with templates."
+  # tagline: "Scaffold TypeScript projects with templates."
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: README
+      link: /README
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: README（zh-TW）
+      link: /README.zh-TW
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Supports Any Git or Local Template
+    details: Fetch project templates from GitHub, GitLab, private servers, or local folders.
+  - title: Branch, Tag, and Subdirectory
+    details: Easily specify branch, tag, or subdirectory for any template source.
+  - title: No degit Dependency
+    details: Uses native git and file copy, fully compatible with SSH and private repos.
+
 ---
 
