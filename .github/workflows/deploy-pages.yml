@@ -26,8 +26,18 @@ concurrency:
 jobs:
   # Build job
   build:
+    env:
+      # Set the base URL for VitePress to the GitHub Pages URL
+      VITEPRESS_BASE: '/start-ts-by'
+      # Set the coverage path for Vitest
+      VITEST_COV_PATH: '../start-ts-by/vitest/coverage'
     runs-on: ubuntu-latest
     steps:
+      - name: Set ENV variables
+        run: |
+          echo "REPO_NAME=${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}" >> $GITHUB_ENV
+          echo $REPO_NAME
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -53,14 +63,14 @@ jobs:
 
       - name: Build with Vitest
         run: |
-          export VITEST_COV_PATH=../$GITHUB_ACTOR/vitest/coverage
           echo $VITEST_COV_PATH
+          echo $VITEPRESS_BASE
           pnpm vitest
 
       - name: Build with VitePress
         run: |
           cp CHANGELOG.md docs
-          npx vitepress build docs --outDir public --base /$GITHUB_ACTOR
+          npx vitepress build docs --outDir public
 
       - name: Prepare public directory
         run: |
