@@ -28,6 +28,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Set ENV variables
+        run: |
+          echo "REPO_NAME=${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}" >> $GITHUB_ENV
+          echo "VITEPRESS_BASE=/${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}" >> $GITHUB_ENV
+          echo "VITEST_COV_PATH=../${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}/vitest/coverage" >> $GITHUB_ENV
+
+      - name: Use the custom ENV variable
+        run: |
+          echo $REPO_NAME
+          echo $VITEPRESS_BASE
+          echo $VITEST_COV_PATH
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -53,14 +65,14 @@ jobs:
 
       - name: Build with Vitest
         run: |
-          export VITEST_COV_PATH=../$GITHUB_ACTOR/vitest/coverage
           echo $VITEST_COV_PATH
+          echo $VITEPRESS_BASE
           pnpm vitest
 
       - name: Build with VitePress
         run: |
           cp CHANGELOG.md docs
-          npx vitepress build docs --outDir public --base /$GITHUB_ACTOR
+          npx vitepress build docs --outDir public
 
       - name: Prepare public directory
         run: |

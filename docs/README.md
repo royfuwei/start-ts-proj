@@ -92,7 +92,7 @@ Commands:
 
 ## References
 
-* [Development](./docs/development.md)
+* [Development](./development.md)
 
 ---
 
