@@ -4,8 +4,8 @@ layout: home
 
 hero:
   name: "start-ts-by"
-  text: "Scaffold TypeScript projects with templates."
-  # tagline: "Scaffold TypeScript projects with templates."
+  text: "Scaffold ts/js projects with templates."
+  # tagline: "Scaffold ts/js projects with templates."
   actions:
     - theme: brand
       text: README

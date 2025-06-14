@@ -1,6 +1,6 @@
 # start-ts-by
 
-Create TypeScript projects from flexible templates using git and local folders.
+Create ts/js projects from flexible templates using git and local folders.
 
 ---
 
