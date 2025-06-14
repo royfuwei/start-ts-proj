@@ -26,17 +26,19 @@ concurrency:
 jobs:
   # Build job
   build:
-    env:
-      # Set the base URL for VitePress to the GitHub Pages URL
-      VITEPRESS_BASE: '/start-ts-by'
-      # Set the coverage path for Vitest
-      VITEST_COV_PATH: '../start-ts-by/vitest/coverage'
     runs-on: ubuntu-latest
     steps:
       - name: Set ENV variables
         run: |
           echo "REPO_NAME=${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}" >> $GITHUB_ENV
+          echo "VITEPRESS_BASE=/${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}" >> $GITHUB_ENV
+          echo "VITEST_COV_PATH=../${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}/vitest/coverage" >> $GITHUB_ENV
+
+      - name: Use the custom ENV variable
+        run: |
           echo $REPO_NAME
+          echo $VITEPRESS_BASE
+          echo $VITEST_COV_PATH
 
       - name: Checkout
         uses: actions/checkout@v4
