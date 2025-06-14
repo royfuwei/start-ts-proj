@@ -1,5 +1,7 @@
 # start-ts-by
 
+![NPM Version](https://img.shields.io/npm/v/start-ts-by) [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/royfuwei/start-ts-by) 
+
 快速透過 **任意 git 或本地模板** 建立 TypeScript 專案。
 支援 GitHub/GitLab/自架 Git/SSH/HTTP/本地資料夾，彈性指定 branch/tag、子目錄。
 

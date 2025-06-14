@@ -55,6 +55,7 @@
     "type": "git",
     "url": "git+https://github.com/royfuwei/start-ts-by.git"
   },
+  "homepage": "https://royfuwei.github.io/start-ts-by/",
   "keywords": [],
   "author": "royfuwei",
   "license": "ISC",
