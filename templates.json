@@ -14,5 +14,9 @@
   {
     "name": "Starter TypeScript Bin Command",
     "repo": "royfuwei/starter-ts-bin"
+  },
+  {
+    "name": "Starter TypeScript App - Koa Framework",
+    "repo": "royfuwei/starter-ts-koa"
   }
 ]
