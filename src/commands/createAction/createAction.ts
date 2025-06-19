@@ -1,5 +1,11 @@
 import { createProject } from '@/libs';
-import { ActionArgsType, ActionCommandType, CreateProjectParams } from '@/types';
+import {
+  ActionArgsType,
+  ActionCommandType,
+  CreateProjectParams,
+  PromptCheckArgsType,
+  RnuExecInfoType,
+} from '@/types';
 import { runActionPromptArgTemplateFlag } from './runActionPromptArgTemplateFlag';
 import { runActionPromptName } from './runActionPromptName';
 import { getArgsRmList } from './getArgsRmList';
@@ -20,10 +26,15 @@ export async function createAction(name?: string, actionArgs?: ActionArgsType) {
       actionArgsParams.template as string,
     );
 
-    if (!skipPrompt) await runActionPromptCheckArgs(actionArgsParams);
+    if (!skipPrompt)
+      await runActionPromptCheckArgs(actionArgsParams, actionPromptCheckArgs);
 
     // Get files/folders to remove
-    const paramArgsRmList = getArgsRmList(actionArgsParams);
+    const paramArgsRmList = getArgsRmList(
+      actionArgsParams,
+      actionRmFileNames,
+      actionDotFileNames,
+    );
 
     const promptRmFlagRmList = skipPrompt
       ? []
@@ -38,7 +49,7 @@ export async function createAction(name?: string, actionArgs?: ActionArgsType) {
       .concat(promptInputsRmList);
 
     // execList
-    const paramArgsExecList = getExecList(actionArgsParams);
+    const paramArgsExecList = getExecList(actionArgsParams, actionExecList);
     const finalExecList = paramArgsExecList;
 
     const params: CreateProjectParams = {
@@ -64,6 +75,29 @@ export async function createAction(name?: string, actionArgs?: ActionArgsType) {
     }
   }
 }
+
+export const actionExecList: RnuExecInfoType[] = [
+  {
+    key: 'gitInit',
+    command: 'git init',
+    isExec: true,
+  },
+  {
+    key: 'npmInstall',
+    command: 'npm install',
+    isExec: true,
+  },
+];
+
+export const actionDotFileNames = ['husky', 'github'];
+export const actionRmFileNames = ['husky', 'github'];
+
+export const actionPromptCheckArgs: PromptCheckArgsType[] = [
+  { key: 'husky', message: 'Keep husky?' },
+  { key: 'github', message: 'Keep GitHub Actions?' },
+  { key: 'gitInit', message: 'Initialize git?' },
+  { key: 'npmInstall', message: 'Install dependencies?' },
+];
 
 export const createActionCommand: ActionCommandType = {
   name: 'create',

@@ -1,12 +1,15 @@
-import { DOT_FILE_NAMES, RM_FILE_NAMES } from '@/const';
 import { ActionArgsType, RemoveFileInfoType } from '@/types';
 
-export function getArgsRmList(actionArgsParams: ActionArgsType) {
+export function getArgsRmList(
+  actionArgsParams: ActionArgsType,
+  rmFileNames: string[],
+  dotFileNames: string[],
+): RemoveFileInfoType[] {
   const removeList: RemoveFileInfoType[] = Object.entries(actionArgsParams)
-    .filter(([key, value]) => RM_FILE_NAMES.includes(key) && typeof value == 'boolean')
+    .filter(([key, value]) => rmFileNames.includes(key) && typeof value == 'boolean')
     .map(([key, value]) => {
       let rmFileName = key;
-      if (DOT_FILE_NAMES.includes(key)) {
+      if (dotFileNames.includes(key)) {
         rmFileName = `.${key}`;
       }
       return {
