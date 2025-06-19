@@ -37,4 +37,8 @@ export function templateToLocal(parsed: ParsedTemplateType, targetDir: string) {
 
   // 清理暫存
   rmSync(tmpDir, { recursive: true, force: true });
+
+  // 移除 .git
+  const gitDir = join(targetDir, '.git');
+  if (existsSync(gitDir)) rmSync(gitDir, { recursive: true, force: true });
 }
