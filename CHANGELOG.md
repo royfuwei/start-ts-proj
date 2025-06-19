@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.18](https://github.com/royfuwei/start-ts-by/compare/v0.0.17...v0.0.18) (2025-06-19)
+
+
+### Features
+
+* add consts.ts ([2ac1fce](https://github.com/royfuwei/start-ts-by/commit/2ac1fce6e290ae82697f001b09a200b8e09da670))
+* **templates:** add royfuwei/starter-ts-koa repo: TypeScript App - Koa Framework ([2a96e7e](https://github.com/royfuwei/start-ts-by/commit/2a96e7ebeffe52a62626a17ca49b949f9b8e7aa3))
+
+
+### Bug Fixes
+
+* **templatetolocal:** add rmSync .git dir ([930ebcc](https://github.com/royfuwei/start-ts-by/commit/930ebcce196a12a2aeafac54b1cbdcd2bcbf936c))
+
 ### [0.0.17](https://github.com/royfuwei/start-ts-by/compare/v0.0.16...v0.0.17) (2025-06-14)
 
 ### [0.0.16](https://github.com/royfuwei/start-ts-by/compare/v0.0.15...v0.0.16) (2025-06-14)
