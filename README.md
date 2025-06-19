@@ -1,6 +1,6 @@
 # start-ts-by
 
-![NPM Version](https://img.shields.io/npm/v/start-ts-by) [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/royfuwei/start-ts-by) 
+[![NPM Version](https://img.shields.io/npm/v/start-ts-by)](https://www.npmjs.com/package/start-ts-by) [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/royfuwei/start-ts-by) 
 
 Create ts/js projects from flexible templates using git and local folders.
 
