@@ -7,13 +7,13 @@ export async function runActionPromptArgRmFlag(actionArgsParams: ActionArgsType)
   if (exRmInfoList.length === 0) {
     return [];
   }
-  console.info('-------- Check cli --rm flags');
+  console.info('-------- Check CLI --rm flags');
   for (const item of exRmInfoList) {
     const { field, isRemove } = item;
     if (!isRemove) continue;
     const promptValue = await promptArgBoolean(
       field,
-      `確認是否刪除 ${field} 檔案`,
+      `Confirm to remove file or folder: ${field}?`,
       isRemove,
     );
     item.isRemove = promptValue;
