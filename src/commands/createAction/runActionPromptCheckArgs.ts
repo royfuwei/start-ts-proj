@@ -1,15 +1,12 @@
-import { ActionArgsType } from '@/types';
+import { ActionArgsType, PromptCheckArgsType } from '@/types';
 import { promptArgBoolean } from '@/utils/promptArgBoolean';
 
-export async function runActionPromptCheckArgs(actionArgsParams: ActionArgsType) {
-  console.info('-------- Check cli flags');
-  const info = [
-    { key: 'husky', message: '是否保留 husky？' },
-    { key: 'github', message: '是否保留 github action？' },
-    { key: 'gitInit', message: '是否初始化 git？' },
-    { key: 'npmInstall', message: '是否安裝依賴？' },
-  ];
-  for (const item of info) {
+export async function runActionPromptCheckArgs(
+  actionArgsParams: ActionArgsType,
+  promptCheckArgs: PromptCheckArgsType[] = [],
+) {
+  console.info('-------- Check CLI flags');
+  for (const item of promptCheckArgs) {
     const { key, message } = item;
     const value = actionArgsParams[key];
     if (value === undefined) continue;

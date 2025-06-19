@@ -10,8 +10,8 @@ export function execSyncByList(
 ): void {
   const { cwd, env, shell } = options;
   for (const command of commandList) {
-    console.info(`🚀 開始執行 ${command}...`);
+    console.info(`🚀 Executing: ${command} ...`);
     execSync(command, { cwd, env, shell, stdio: 'inherit' });
-    console.info(`✅ ${command} 執行完成`);
+    console.info(`✅ Finished: ${command}`);
   }
 }

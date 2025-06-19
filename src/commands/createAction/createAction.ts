@@ -1,5 +1,11 @@
 import { createProject } from '@/libs';
-import { ActionArgsType, ActionCommandType, CreateProjectParams } from '@/types';
+import {
+  ActionArgsType,
+  ActionCommandType,
+  CreateProjectParams,
+  PromptCheckArgsType,
+  RnuExecInfoType,
+} from '@/types';
 import { runActionPromptArgTemplateFlag } from './runActionPromptArgTemplateFlag';
 import { runActionPromptName } from './runActionPromptName';
 import { getArgsRmList } from './getArgsRmList';
@@ -10,7 +16,7 @@ import { runActionPromptArgRmFlag } from './runActionPromptArgRmFlag';
 
 export async function createAction(name?: string, actionArgs?: ActionArgsType) {
   try {
-    console.log('🚀 開始建立專案...');
+    console.log('🚀 Creating project...');
     const actionArgsParams = actionArgs ?? {};
     const skipPrompt = actionArgsParams.skipPrompt as boolean;
 
@@ -20,10 +26,15 @@ export async function createAction(name?: string, actionArgs?: ActionArgsType) {
       actionArgsParams.template as string,
     );
 
-    if (!skipPrompt) await runActionPromptCheckArgs(actionArgsParams);
+    if (!skipPrompt)
+      await runActionPromptCheckArgs(actionArgsParams, actionPromptCheckArgs);
 
-    // 取得要移除的檔案或資料夾
-    const paramArgsRmList = getArgsRmList(actionArgsParams);
+    // Get files/folders to remove
+    const paramArgsRmList = getArgsRmList(
+      actionArgsParams,
+      actionRmFileNames,
+      actionDotFileNames,
+    );
 
     const promptRmFlagRmList = skipPrompt
       ? []
@@ -31,14 +42,14 @@ export async function createAction(name?: string, actionArgs?: ActionArgsType) {
     const promptInputsRmList = skipPrompt
       ? []
       : await runActionPromptWhileInputsAddRmList(
-          '請輸入要移除的檔案/資料夾 (press double enter to skip):',
+          'Enter files/folders to remove (press double enter to skip):',
         );
     const finalRemoveList = paramArgsRmList
       .concat(promptRmFlagRmList)
       .concat(promptInputsRmList);
 
     // execList
-    const paramArgsExecList = getExecList(actionArgsParams);
+    const paramArgsExecList = getExecList(actionArgsParams, actionExecList);
     const finalExecList = paramArgsExecList;
 
     const params: CreateProjectParams = {
@@ -51,55 +62,79 @@ export async function createAction(name?: string, actionArgs?: ActionArgsType) {
     await createProject(params);
   } catch (error: unknown) {
     if ((error as { name?: string })?.name === 'ExitPromptError') {
-      console.log('👋 使用者中斷了輸入（Ctrl+C）');
+      console.log('👋 Input aborted by user (Ctrl+C)');
       process.exit(0);
     } else {
       const errorMessage = (error as { message?: string })?.message;
       if (errorMessage) {
-        console.error('❌ 發生錯誤:', errorMessage);
+        console.error('❌ Error:', errorMessage);
       } else {
-        console.error('❌ 發生錯誤:', error);
+        console.error('❌ Error:', error);
       }
       process.exit(1);
     }
   }
 }
 
+export const actionExecList: RnuExecInfoType[] = [
+  {
+    key: 'gitInit',
+    command: 'git init',
+    isExec: true,
+  },
+  {
+    key: 'npmInstall',
+    command: 'npm install',
+    isExec: true,
+  },
+];
+
+export const actionDotFileNames = ['husky', 'github'];
+export const actionRmFileNames = ['husky', 'github'];
+
+export const actionPromptCheckArgs: PromptCheckArgsType[] = [
+  { key: 'husky', message: 'Keep husky?' },
+  { key: 'github', message: 'Keep GitHub Actions?' },
+  { key: 'gitInit', message: 'Initialize git?' },
+  { key: 'npmInstall', message: 'Install dependencies?' },
+];
+
 export const createActionCommand: ActionCommandType = {
   name: 'create',
-  description: '從 GitHub 模板建立新專案 (Default)',
+  description: 'Create a new project from a git template (Default)',
   flagsOptions: [
     {
       flags: '-t, --template <repo>',
-      description: 'GitHub 模板，如 user/repo',
+      description:
+        'Template source, e.g. user/repo, git@domain:group/repo.git, ./local-folder',
     },
     {
       flags: '--skip-prompt',
-      description: 'skip prompt',
+      description: 'Skip prompt',
       defaultValue: false,
     },
     {
       flags: '--rm <files...>',
-      description: 'initial remove files',
+      description: 'Remove files/folders after project creation',
       defaultValue: [],
     },
     {
       flags: '--no-husky',
-      description: 'remove .husky',
+      description: 'Remove .husky',
     },
     {
       flags: '--github',
-      description: 'keep .github/workflows',
+      description: 'Keep .github/workflows',
       defaultValue: false,
     },
     {
       flags: '--git-init',
-      description: 'run git init',
+      description: 'Run git init after creation',
       defaultValue: false,
     },
     {
       flags: '--npm-install',
-      description: 'run npm install',
+      description: 'Run npm install after creation',
       defaultValue: false,
     },
   ],

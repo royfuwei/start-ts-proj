@@ -21,17 +21,17 @@ export async function createProject(params: CreateProjectParams) {
     checkExistPathAndRemove(targetDir, item.field, item.isRemove);
   }
 
-  // 初始化 package.json
+  // Initialize package.json
   initProjPackageJson(targetDir);
 
-  // 初始化 README.md
+  // Initialize README.md
   initProjReadMeMd(template, targetDir);
 
   const runExecCommandList = execList.filter((i) => i.isExec).map((i) => i.command);
   execSyncByList(runExecCommandList, { cwd: targetDir });
 
-  console.log(`✅ 專案 ${name} 已建立於 ${targetDir}`);
+  console.log(`✅ Project "${name}" has been created at ${targetDir}`);
 
   await new Promise((resolve) => setTimeout(resolve, 500));
-  console.log('🎉 開始你的專案吧！');
+  console.log('🎉 Start building your project!');
 }

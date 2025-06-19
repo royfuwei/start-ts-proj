@@ -67,3 +67,8 @@ export type CreateProjectParams = {
   removeList: RemoveFileInfoType[];
   execList: RnuExecInfoType[];
 };
+
+export type PromptCheckArgsType = {
+  key: string;
+  message: string;
+};

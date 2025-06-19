@@ -9,7 +9,7 @@ export async function runActionPromptArgTemplateFlag(arg?: string) {
       {
         type: 'input',
         name: 'template',
-        message: '請輸入模板 (如 user/repo): (press enter to select template)',
+        message: 'Enter template (e.g. user/repo): (press enter to select from list)',
       },
     ]);
     template = res.template ? String(res.template) : undefined;
@@ -19,7 +19,7 @@ export async function runActionPromptArgTemplateFlag(arg?: string) {
     const res: OptionsType = await inquirer.prompt([
       {
         name: 'template',
-        message: '請選擇模板',
+        message: 'Select a template',
         type: 'list',
         choices: templates.map((t) => ({
           name: `${t.repo} (${t.name})`,
@@ -30,6 +30,6 @@ export async function runActionPromptArgTemplateFlag(arg?: string) {
     template = res.template ? String(res.template) : undefined;
   }
   if (template) return template;
-  console.error('❌ 模板名稱無效');
+  console.error('❌ Invalid template name');
   process.exit(1);
 }

@@ -6,7 +6,7 @@ export async function runActionPromptName(arg?: string) {
   let name: string | undefined = arg ? String(arg) : undefined;
   if (!name) {
     const res: OptionsType = await inquirer.prompt([
-      { type: 'input', name: 'name', message: '請輸入專案名稱', default: 'my-app' },
+      { type: 'input', name: 'name', message: 'Enter project name', default: 'my-app' },
     ]);
     name = res.name ? String(res.name) : undefined;
   }
@@ -14,6 +14,6 @@ export async function runActionPromptName(arg?: string) {
     getTargetDir(name);
     return name;
   }
-  console.error('❌ 專案名稱無效');
+  console.error('❌ Invalid project name');
   process.exit(1);
 }
